@@ -1,0 +1,19 @@
+version: "3.5"
+services:
+  mongo:
+    image: mongo:4.0.6
+    container_name: auto-response-server-mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    ports:
+      - 27017:27017
+    volumes:
+      - mongodbdata:/data/db
+      - ./scripts:/docker-entrypoint-initdb.d
+    logging:
+      driver: none
+
+volumes:
+  mongodbdata:
